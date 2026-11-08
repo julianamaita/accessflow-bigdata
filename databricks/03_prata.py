@@ -86,6 +86,14 @@ merge_por_chave(mun, "prata_municipios", ["codigo_ibge"])
 
 # COMMAND ----------
 
+def sub(df, coluna, campo):
+    """Campo de objeto aninhado. Com inferColumnTypes=false o Auto Loader entrega o objeto como texto JSON."""
+    from pyspark.sql.types import StructType
+    if isinstance(df.schema[coluna].dataType, StructType):
+        return F.col(f"{coluna}.{campo}")
+    return F.get_json_object(F.col(coluna), f"$.{campo}")
+
+
 STATUS_VALIDOS = ["aberta", "atribuida", "resolvida", "verificada", "descartada"]
 FONTES_VALIDAS = ["visao", "robo", "manual"]
 cnes_cadastrados = spark.table(T("prata_estabelecimentos")).select(F.col("cnes").alias("_cnes_ok"))
@@ -97,8 +105,8 @@ ts = lambda c: F.to_timestamp(col_ou_nulo(bo, c))  # noqa: E731  ISO 8601 com fu
 oc = (bo.select(
         F.trim(col_ou_nulo(bo, "id_ocorrencia")).alias("id_ocorrencia"),
         F.lpad(F.trim(col_ou_nulo(bo, "cnes")), 7, "0").alias("cnes"),
-        F.col("trecho.id").alias("id_trecho"), F.col("trecho.nome").alias("nome_trecho"),
-        F.col("trecho.tipo").alias("tipo_trecho"),
+        sub(bo, "trecho", "id").alias("id_trecho"), sub(bo, "trecho", "nome").alias("nome_trecho"),
+        sub(bo, "trecho", "tipo").alias("tipo_trecho"),
         F.lower(F.trim(col_ou_nulo(bo, "fonte"))).alias("fonte"),
         F.lower(F.trim(col_ou_nulo(bo, "tipo_obstaculo"))).alias("tipo_obstaculo"),   # " Caixa" -> "caixa"
         col_ou_nulo(bo, "confianca").cast("double").alias("confianca"),
@@ -109,8 +117,8 @@ oc = (bo.select(
         ts("resolvido_em").alias("resolvido_em"), ts("verificado_em").alias("verificado_em"),
         ts("atualizado_em").alias("atualizado_em"),
         # dados pessoais: só o necessário (telefone é descartado já na Prata - minimização LGPD)
-        F.initcap(F.trim(F.col("responsavel.nome"))).alias("responsavel_nome"),
-        F.lower(F.trim(F.col("responsavel.email"))).alias("responsavel_email"),
+        F.initcap(F.trim(sub(bo, "responsavel", "nome"))).alias("responsavel_nome"),
+        F.lower(F.trim(sub(bo, "responsavel", "email"))).alias("responsavel_email"),
         "_data_coleta", "_arquivo_origem")
       .withColumn("tipo_obstaculo", F.coalesce("tipo_obstaculo", F.lit("outro")))
       .join(cnes_cadastrados, F.col("cnes") == F.col("_cnes_ok"), "left"))
@@ -143,8 +151,8 @@ bn = spark.table(T("bronze_inspecoes"))
 insp = (bn.select(
           F.trim(col_ou_nulo(bn, "id_inspecao")).alias("id_inspecao"),
           F.lpad(F.trim(col_ou_nulo(bn, "cnes")), 7, "0").alias("cnes"),
-          F.col("trecho.id").alias("id_trecho"), F.col("trecho.nome").alias("nome_trecho"),
-          F.col("trecho.tipo").alias("tipo_trecho"),
+          sub(bn, "trecho", "id").alias("id_trecho"), sub(bn, "trecho", "nome").alias("nome_trecho"),
+          sub(bn, "trecho", "tipo").alias("tipo_trecho"),
           F.trim(col_ou_nulo(bn, "executado_por")).alias("executado_por"),
           F.to_timestamp(col_ou_nulo(bn, "inspecionado_em")).alias("inspecionado_em"),
           F.lower(F.trim(col_ou_nulo(bn, "resultado"))).alias("resultado"),
