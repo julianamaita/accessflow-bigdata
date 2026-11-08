@@ -1,0 +1,17 @@
+# Airflow 3 local, em modo standalone (scheduler + api-server + dag-processor num container).
+# Uso: docker compose up -d  ->  http://localhost:8080
+services:
+  airflow:
+    image: apache/airflow:3.1.0-python3.12
+    command: standalone
+    ports:
+      - "8080:8080"
+    environment:
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__CORE__DEFAULT_TIMEZONE: "America/Sao_Paulo"
+      AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_ALL_ADMINS: "True"   # só para desenvolvimento local
+      AIRFLOW__CORE__PARALLELISM: "8"
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./chegada:/opt/airflow/chegada
+      - ./config:/opt/airflow/config_accessflow:ro

@@ -1,0 +1,7 @@
+chegada/
+lotes/
+.env
+*.tmp
+__pycache__/
+logs/
+config/variables.json

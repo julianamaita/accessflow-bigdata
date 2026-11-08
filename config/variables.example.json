@@ -1,0 +1,10 @@
+{
+  "accessflow_pasta_chegada": "/opt/airflow/chegada",
+  "cnes_codigo_municipio": "355030",
+  "cnes_max_paginas": "25",
+  "ibge_localidades": "N6[N3[35]]",
+  "accessflow_cnes_piloto": "",
+  "accessflow_api_url": "",
+  "accessflow_api_token": "",
+  "accessflow_webhook_notificacao": ""
+}

@@ -1,0 +1,7 @@
+# coleta (já incluídos na imagem oficial do Airflow 3)
+requests>=2.31
+pendulum>=3.0
+# testes locais opcionais da lógica Spark
+pyspark>=3.5
+# exemplo de consumo da Ouro pelo backend do MVP
+databricks-sql-connector>=3.0
