@@ -6,6 +6,11 @@
 
 -- COMMAND ----------
 
+-- Horários no fuso de São Paulo (o padrão da sessão SQL é UTC)
+SET TIME ZONE 'America/Sao_Paulo';
+
+-- COMMAND ----------
+
 -- MAGIC %md
 -- MAGIC ## Consulta 1 · Cidadão: "A passagem acessível desta unidade está livre agora?"
 -- MAGIC Alimenta a **página pública**: status de cada trecho, última inspeção e orientação.
