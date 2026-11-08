@@ -1,0 +1,209 @@
+[
+  {
+    "id": "9324",
+    "variavel": "População residente estimada",
+    "unidade": "Pessoas",
+    "resultados": [
+      {
+        "classificacoes": [],
+        "series": [
+          {
+            "localidade": {
+              "id": "3500105",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Adamantina - SP"
+            },
+            "serie": {
+              "2026": "35701"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500204",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Adolfo - SP"
+            },
+            "serie": {
+              "2026": "4529"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500303",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Aguaí - SP"
+            },
+            "serie": {
+              "2026": "32884"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500402",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Águas da Prata - SP"
+            },
+            "serie": {
+              "2026": "7457"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500501",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Águas de Lindóia - SP"
+            },
+            "serie": {
+              "2026": "18277"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500550",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Águas de Santa Bárbara - SP"
+            },
+            "serie": {
+              "2026": "7508"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500600",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Águas de São Pedro - SP"
+            },
+            "serie": {
+              "2026": "2933"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500709",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Agudos - SP"
+            },
+            "serie": {
+              "2026": "39084"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500758",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Alambari - SP"
+            },
+            "serie": {
+              "2026": "6411"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500808",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Alfredo Marcondes - SP"
+            },
+            "serie": {
+              "2026": "4591"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3500907",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Altair - SP"
+            },
+            "serie": {
+              "2026": "3456"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3501004",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Altinópolis - SP"
+            },
+            "serie": {
+              "2026": "17234"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3501103",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Alto Alegre - SP"
+            },
+            "serie": {
+              "2026": "3866"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3501152",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Alumínio - SP"
+            },
+            "serie": {
+              "2026": "17621"
+            }
+          },
+          {
+            "localidade": {
+              "id": "3501202",
+              "nivel": {
+                "id": "N6",
+                "nome": "Município"
+              },
+              "nome": "Álvares Florence - SP"
+            },
+            "serie": {
+              "2026": "3980"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

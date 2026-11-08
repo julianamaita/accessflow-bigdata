@@ -60,11 +60,24 @@ def coletar_cnes(chegada: Path, ds: str, codigo_municipio: str, max_paginas: int
 
 
 # ------------------------------------------------------------------ IBGE (externa)
-def coletar_ibge(chegada: Path, ds: str, localidades: str) -> dict:
-    """População estimada por município (agregado 6579, variável 9324). Resposta bruta."""
-    r = requests.get(URL_IBGE.format(localidades=localidades), headers=CABECALHOS, timeout=TIMEOUT)
-    r.raise_for_status()
-    dados = r.json()
+SNAPSHOT_IBGE = "/opt/airflow/config_accessflow/ibge_populacao_snapshot.json"
+
+
+def coletar_ibge(chegada: Path, ds: str, localidades: str, snapshot: str = SNAPSHOT_IBGE) -> dict:
+    """População estimada por município (agregado 6579, variável 9324). Resposta bruta.
+
+    A API do IBGE recusa conexões de fora do Brasil (ex.: GitHub Codespaces). Nesse caso
+    usamos o snapshot baixado manualmente da MESMA URL (config/ibge_populacao_snapshot.json).
+    A população muda 1x por ano, então o snapshot não perde validade no período da GS.
+    """
+    try:
+        r = requests.get(URL_IBGE.format(localidades=localidades), headers=CABECALHOS, timeout=TIMEOUT)
+        r.raise_for_status()
+        dados, modo = r.json(), "api"
+    except requests.RequestException as exc:
+        log.warning("IBGE indisponível (%s); usando snapshot %s", exc, snapshot)
+        dados, modo = json.loads(Path(snapshot).read_text(encoding="utf-8")), "snapshot"
+    log.info("IBGE modo=%s", modo)
     destino = chegada / "ibge" / f"ibge_populacao_{ds}.json"
     destino.parent.mkdir(parents=True, exist_ok=True)
     destino.write_text(json.dumps(dados, ensure_ascii=False), encoding="utf-8")
