@@ -12,10 +12,10 @@
 | Nome completo | RM |
 |---|---|
 | Juliana Villalpando Maita | RM99224 |
-| _preencher_ | _preencher_ |
-| _preencher_ | _preencher_ |
-| _preencher_ | _preencher_ |
-| _preencher_ | _preencher_ |
+| João Victor Dos Santos Morais | RM550453 |
+| Luana Cabezaolias | RM99320 |
+| Lucca Vilaça Okubo | RM551538 |
+| Pedro Henrique Pontes Farath | RM98608 |
 
 ## Perguntas que o MVP responde
 
